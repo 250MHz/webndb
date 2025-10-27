@@ -67,6 +67,11 @@ class Base(AsyncAttrs, DeclarativeBase):
         )
 
 
+class AuthUser(Base):
+    __tablename__ = 'auth_user'
+
+
+
 class Novel(Base):
     __tablename__ = 'novel'
 

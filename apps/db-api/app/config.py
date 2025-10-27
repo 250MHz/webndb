@@ -71,6 +71,9 @@ SQLALCHEMY_DATABASE_URI_SYNC = URL.create(
 MEILI_URL = os.getenv('MEILI_URL', 'http://meili:7700')
 MEILI_MASTER_KEY = os.getenv('MEILI_MASTER_KEY')
 
+GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')
+
 ALLOWED_CORS_ORIGIN: list[str] | str = os.getenv('ALLOWED_CORS_ORIGIN', ['*'])
 # https://github.com/litestar-org/litestar-fullstack/blob/e4dd330917e3c500e73f68a6b4f9d1d2f71cc75f/src/app/config/base.py#L409
 # Check if the ALLOWED_CORS_ORIGINS is a string.

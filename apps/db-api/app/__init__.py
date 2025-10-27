@@ -1,8 +1,10 @@
 from collections.abc import AsyncGenerator
 
 from litestar import Litestar
+from litestar.middleware.session.server_side import ServerSideSessionConfig
 from litestar.plugins.sqlalchemy import SQLAlchemyAsyncConfig, SQLAlchemyInitPlugin
 from litestar.plugins.structlog import StructlogPlugin
+from litestar.stores.memory import MemoryStore
 from litestar_granian import GranianPlugin
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -36,6 +38,8 @@ def create_app() -> Litestar:
             StructlogPlugin(config=log_config),
             GranianPlugin(),
         ],
+        middleware=[ServerSideSessionConfig().middleware],
+        stores={'sessions': MemoryStore()},
         on_startup=[do_init_db],
         lifespan=[meilisearch_client],
         type_encoders={JSONNull: jsonnull_enc_hook, bigint: bigint_enc_hook},
